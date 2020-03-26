@@ -1,4 +1,5 @@
 import 'package:redux/redux.dart';
+import 'package:redux_logging/redux_logging.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
 // AppState
@@ -50,6 +51,7 @@ ThunkAction<AppState> combineAction = (Store<AppState> store) async {
   store.dispatch(CounterAction(3));
   await Future.delayed(Duration(seconds: 3));
   store.dispatch(ExtraAction(Extra('John', 21)));
+  store.dispatch(CounterAction(3));
 };
 
 // root reducer
@@ -77,3 +79,16 @@ var extraReducer = combineReducers<Extra>([
 Extra _extraHandler(Extra pre, ExtraAction action) {
   return action.extra;
 }
+
+// store that hold our current appstate
+final store = Store<AppState>(
+  reducer,
+  initialState: AppState(counter: 0, extra: Extra('Lily', 0)),
+  middleware: [
+    thunkMiddleware,
+    LoggingMiddleware.printer(),
+  ],
+);
+
+typedef void IncrementCounter(); // This is sync.
+typedef Future<void> AsyncCallback(); // This is async.

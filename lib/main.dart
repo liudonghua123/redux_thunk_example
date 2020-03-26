@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux_logging/redux_logging.dart';
-import 'package:redux/redux.dart';
-import 'package:redux_thunk/redux_thunk.dart';
+import 'package:redux_thunk_example/page1.dart';
 import './redux.dart';
-
-// store that hold our current appstate
-final store = Store<AppState>(reducer,
-    initialState: AppState(counter: 0, extra: Extra('Lily', 0)),
-    middleware: [thunkMiddleware, LoggingMiddleware.printer()]);
 
 void main() => runApp(MyApp());
 
@@ -59,7 +52,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-
             // display name and age
             StoreConnector<AppState, AppState>(
               converter: (store) => store.state,
@@ -71,43 +63,37 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-
             // async get extra info
-            StoreConnector<AppState, AsyncCallback>(
-              converter: (store) => () async => store.dispatch(asyncAction),
-              builder: (_, asyncCallback) {
-                return FlatButton(
-                    color: Colors.lightBlue,
-                    onPressed: asyncCallback,
-                    child: Text("do some async action"));
-              },
+            FlatButton(
+              color: Colors.lightBlue,
+              onPressed: () async =>
+                  StoreProvider.of<AppState>(context).dispatch(asyncAction),
+              child: Text("do some async action"),
             ),
             // sync and async action
-            StoreConnector<AppState, AsyncCallback>(
-              converter: (store) => () async => store.dispatch(combineAction),
-              builder: (_, asyncCallback) {
-                return FlatButton(
-                    color: Colors.lightBlue,
-                    onPressed: asyncCallback,
-                    child: Text("do some combine action"));
-              },
+            FlatButton(
+              color: Colors.lightBlue,
+              onPressed: () async =>
+                  StoreProvider.of<AppState>(context).dispatch(combineAction),
+              child: Text("do some combine action"),
+            ),
+            // sync and async action
+            FlatButton(
+              color: Colors.lightBlue,
+              onPressed: () async => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Page1())),
+              child: Text("go to page2"),
             ),
           ],
         ),
       ),
-      floatingActionButton: StoreConnector<AppState, IncrementCounter>(
-        converter: (store) => () => store.dispatch(CounterAction(1)),
-        builder: (_, incrementCallback) {
-          return FloatingActionButton(
-            onPressed: incrementCallback,
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
-          );
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          StoreProvider.of<AppState>(context).dispatch(CounterAction(1));
         },
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
-
-typedef void IncrementCounter(); // This is sync.
-typedef Future<void> AsyncCallback(); // This is async.
