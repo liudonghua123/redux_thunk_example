@@ -53,8 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
               converter: (store) => store.state.counter,
               builder: (_, counter) {
                 return Text(
-                  'You have pushed the button this many times:\n$counter',
-                  style: Theme.of(context).textTheme.display1,
+                  'You have pushed times:\n$counter',
+                  style: Theme.of(context).textTheme.title,
+                  textAlign: TextAlign.center,
                 );
               },
             ),
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               converter: (store) => store.state,
               builder: (_, state) {
                 return Text(
-                  ' ${state.extra.name} \n -${state.extra.age}',
+                  'Extra info: name ${state.extra.name}, age: ${state.extra.age}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 20.0),
                 );
