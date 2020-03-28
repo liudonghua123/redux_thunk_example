@@ -1,6 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_translate/global.dart';
 import 'package:redux_thunk_example/redux.dart';
 
 import 'tab1_page.dart';
@@ -34,9 +34,9 @@ class _HomePageState extends State<HomePage> {
     return StoreConnector<AppState, Locale>(
       converter: (store) => store.state.locale,
       builder: (_, locale) {
-        print('home build, locale: ${locale}, title: ${tr('title')}');
+        print('home build, locale: ${locale}, title: ${translate('title')}');
         return Scaffold(
-          appBar: AppBar(title: Text(tr('title'))),
+          appBar: AppBar(title: Text(translate('title'))),
           body: SizedBox.expand(
             child: PageView(
               controller: _pageController,
@@ -58,9 +58,9 @@ class _HomePageState extends State<HomePage> {
             },
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home), title: Text(tr('tab1'))),
+                  icon: Icon(Icons.home), title: Text(translate('tab1'))),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.apps), title: Text(tr('tab2'))),
+                  icon: Icon(Icons.apps), title: Text(translate('tab2'))),
             ],
             type: BottomNavigationBarType.fixed,
             currentIndex: _currentIndex,

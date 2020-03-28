@@ -1,13 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import './redux.dart';
+import 'package:flutter_translate/flutter_translate.dart';
+
 import 'app.dart';
 
 void main() async {
-  runApp(EasyLocalization(
-    supportedLocales: [Locale('en', 'US'), Locale('zh', 'CN')],
-    path: 'assets/langs',
-    child: App(),
-  ));
+  var delegate = await LocalizationDelegate.create(
+      fallbackLocale: 'en_US', supportedLocales: ['en_US', 'zh_CN']);
+
+  runApp(LocalizedApp(delegate, App()));
 }

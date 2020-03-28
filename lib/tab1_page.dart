@@ -1,6 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:redux_thunk_example/redux.dart';
 
 class Tab1Page extends StatelessWidget {
@@ -18,7 +18,7 @@ class Tab1Page extends StatelessWidget {
           ),
           child: ListTile(
             leading: Icon(Icons.language),
-            title: Text(tr("language")),
+            title: Text(translate("language")),
             trailing: Icon(Icons.navigate_next),
             onTap: () async {
               // set up the list options
@@ -29,13 +29,13 @@ class Tab1Page extends StatelessWidget {
               var selections = locales.map((locale) => SimpleDialogOption(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
-                      child: Container(child: Text(tr(locale.languageCode)))),
+                      child: Container(child: Text(translate(locale.languageCode)))),
                   onPressed: () {
                     Navigator.of(context).pop(locale);
                   }));
               // set up the SimpleDialog
               SimpleDialog dialog = SimpleDialog(
-                title: Text(tr('language')),
+                title: Text(translate('language')),
                 children: <Widget>[
                   ...selections,
                 ],

@@ -76,6 +76,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_device_locale:
+    dependency: transitive
+    description:
+      name: flutter_device_locale
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.3.4+1"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -93,6 +100,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_translate:
+    dependency: "direct main"
+    description:
+      name: flutter_translate
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.5.7"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
