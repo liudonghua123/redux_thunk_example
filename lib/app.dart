@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_translate/localized_app.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_thunk_example/demo.dart';
 import 'package:redux_thunk_example/redux.dart';
 
 import 'home_page.dart';
@@ -24,6 +25,7 @@ class App extends StatelessWidget {
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
+              DemoLocalizationsDelegate(),
               localizationDelegate
             ],
             supportedLocales: localizationDelegate.supportedLocales,

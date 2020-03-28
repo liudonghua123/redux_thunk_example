@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_translate/global.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:redux_thunk_example/redux.dart';
 
+import 'demo.dart';
 import 'tab1_page.dart';
 import 'tab2_page.dart';
 

@@ -29,7 +29,8 @@ class Tab1Page extends StatelessWidget {
               var selections = locales.map((locale) => SimpleDialogOption(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
-                      child: Container(child: Text(translate(locale.languageCode)))),
+                      child: Container(
+                          child: Text(translate(locale.languageCode)))),
                   onPressed: () {
                     Navigator.of(context).pop(locale);
                   }));
@@ -51,9 +52,13 @@ class Tab1Page extends StatelessWidget {
               if (locale != null) {
                 // EasyLocalization.of(context).locale = locale;
                 // print('changeLocale ${locale.languageCode}_${locale.countryCode}');
-                // changeLocale(context, '${locale.languageCode}_${locale.countryCode}');
+                await changeLocale(
+                    context, '${locale.languageCode}_${locale.countryCode}');
                 StoreProvider.of<AppState>(context)
                     .dispatch(LocaleAction(locale));
+                // Future.delayed(Duration(seconds: 3), () {
+
+                // });
                 // Routes.router.navigateTo(context, Routes.home);
               }
             },
