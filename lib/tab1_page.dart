@@ -50,6 +50,8 @@ class Tab1Page extends StatelessWidget {
               print('select locale: ${locale}');
               if (locale != null) {
                 // EasyLocalization.of(context).locale = locale;
+                // print('changeLocale ${locale.languageCode}_${locale.countryCode}');
+                // changeLocale(context, '${locale.languageCode}_${locale.countryCode}');
                 StoreProvider.of<AppState>(context)
                     .dispatch(LocaleAction(locale));
                 // Routes.router.navigateTo(context, Routes.home);
